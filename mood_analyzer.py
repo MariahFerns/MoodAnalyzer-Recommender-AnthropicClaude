@@ -33,7 +33,7 @@ def main():
             )
         
 	    # Join the text of all blocks into a single string
-	    mood_analysis_text = ' '.join( block.text for block in message.content)
+            mood_analysis_text = ' '.join( block.text for block in message.content)
 			
 	    # Display the mood analysis
 	    st.markdown('**Mood Analysis**')

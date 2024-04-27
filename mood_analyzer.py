@@ -32,64 +32,64 @@ def main():
                 ]
             )
         
-	    # Join the text of all blocks into a single string
-            mood_analysis_text = ' '.join( block.text for block in message.content)
+			# Join the text of all blocks into a single string
+			mood_analysis_text = ' '.join( block.text for block in message.content)
 			
-	    # Display the mood analysis
-	    st.markdown('**Mood Analysis**')
-	    st.write(mood_analysis_text)
+			# Display the mood analysis
+			st.markdown('**Mood Analysis**')
+			st.write(mood_analysis_text)
 			
 			
-	    # Based on the analysis, define mood category
+			# Based on the analysis, define mood category
 			
-	    mood_categories = ['Happy', 'Sad', 'Angry', 'Anxious', 'Neutral']
+			mood_categories = ['Happy', 'Sad', 'Angry', 'Anxious', 'Neutral']
 			
-	    # Categorize the mood based on keywords
-	    # Set the default mood category
-	    mood_category = 'Neutral'
-	    for category in mood_categories:
-	        if category.lower() in mood_analysis_text.lower():
-		    mood_category = category
-		    break
+			# Categorize the mood based on keywords
+			# Set the default mood category
+			mood_category = 'Neutral'
+			for category in mood_categories:
+				if category.lower() in mood_analysis_text.lower():
+					mood_category = category
+					break
 					
-	    # Display the mood category in Streamlit
+			# Display the mood category in Streamlit
 			
-	    mood_category_diplay = f'**Mood Category:** {mood_category}'
+			mood_category_diplay = f'**Mood Category:** {mood_category}'
 			
-	    if mood_category == 'Happy':
-	        st.success(mood_category_diplay)
-	    elif mood_category == 'Sad' or mood_category == 'Angry':
-	        st.error(mood_category_display)
-	    elif mood_category == 'Anxious':
-	        st.warning(mood_category_display)
-	    else: # Neutral
-	        st.info(mood_category_display)
+			if mood_category == 'Happy':
+				st.success(mood_category_diplay)
+			elif mood_category == 'Sad' or mood_category == 'Angry':
+				st.error(mood_category_display)
+			elif mood_category == 'Anxious':
+				st.warning(mood_category_display)
+			else: # Neutral
+				st.info(mood_category_display)
 				
 				
-	    # Based on the mood category, make recomendations
+			# Based on the mood category, make recomendations
 			
-	    if mood_category != 'Neutral':
-	        # Make the API call
-	        message = client.messages.create(
-			model = 'claude3-soonet-20240229',
-			max_tokens = 689,
-			temperature = 0,
-			messages = [
-				{'role':'user',
-				'content':f'''
-					Based on the mood analysis {mood_analysis_text} and the 
-					mood category {mood_category}, can you make some recommendations
-					that would help the user feel better.
-				'''}
-				]
-			)
+			if mood_category != 'Neutral':
+				# Make the API call
+				message = client.messages.create(
+					model = 'claude3-soonet-20240229',
+					max_tokens = 689,
+					temperature = 0,
+					messages = [
+						{'role':'user',
+						'content':f'''
+							Based on the mood analysis {mood_analysis_text} and the 
+							mood category {mood_category}, can you make some recommendations
+							that would help the user feel better.
+						'''}
+					]
+				)
 				
-		# Create the response string
-		recommendations = ' '.join( block.text for block in message.content)
+				# Create the response string
+				recommendations = ' '.join( block.text for block in message.content)
 				
-		# Display the recommendations
-		st.markdown('**Recommendations:**')
-		st.write(recommendations)
+				# Display the recommendations
+				st.markdown('**Recommendations:**')
+				st.write(recommendations)
             
         
     else:

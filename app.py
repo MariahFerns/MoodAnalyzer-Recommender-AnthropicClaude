@@ -54,16 +54,16 @@ def main():
 				    	
             # Display the mood category in Streamlit
         
-            # mood_category_diplay = f'**Mood Category:** {mood_category}'
+            mood_category_diplay = f'**Mood Category:** {mood_category}'
             
             if mood_category == 'Happy':
-            	st.success(mood_category)
+            	st.success(mood_category_diplay)
             elif mood_category == 'Sad' or mood_category == 'Angry':
-            	st.error(mood_category)
+            	st.error(mood_category_diplay)
             elif mood_category == 'Anxious':
-            	st.warning(mood_category)
+            	st.warning(mood_category_diplay)
             else: # Neutral
-            	st.info(mood_category)
+            	st.info(mood_category_diplay)
 				
 				
             # Based on the mood category, make recomendations

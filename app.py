@@ -4,7 +4,7 @@ import anthropic
 
 def main():
     # Set page title
-    st.title('Mood Analyzer App')
+    st.title('🔖Mood Analyzer App')
     
     # Get API Key
     api_key = st.text_input('Enter your Claude Anthropic API key:', type='password')
